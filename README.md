@@ -1,0 +1,2 @@
+# deneme
+bu denemedir
