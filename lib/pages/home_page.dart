@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deneme5/services/firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,9 +12,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //mesajjjj göndermeee yeri
+  void setupPushNotifications() async {
+    final fcm = FirebaseMessaging.instance;
+
+    await fcm.requestPermission();
+    fcm.subscribeToTopic('notes');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    setupPushNotifications();
+  }
+
   Future signOut() async {
     FirebaseAuth.instance.signOut();
   }
+
+  //bitiş
 
   final FirestoreService firestorService = FirestoreService();
 
@@ -75,7 +93,7 @@ class _HomePageState extends State<HomePage> {
 
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
-                String noteText = data['notes'];
+                String noteText = data['note'];
 
                 return ListTile(
                   title: Text(noteText),

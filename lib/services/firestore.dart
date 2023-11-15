@@ -6,7 +6,7 @@ class FirestoreService {
 
   Future<void> addNote(String note) {
     return notes.add({
-      'notes': note,
+      'note': note,
       'timestamp': Timestamp.now(),
     });
   }
@@ -20,7 +20,7 @@ class FirestoreService {
 
   Future<void> updateNote(String docID, String newNote) {
     return notes.doc(docID).update({
-      'notes': newNote,
+      'note': newNote,
       'timestamp': Timestamp.now(),
     });
   }
