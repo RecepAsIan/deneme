@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //mesajjjj göndermeee yeri
+  //mesajjjj göndermeee yer
   void setupPushNotifications() async {
     final fcm = FirebaseMessaging.instance;
 
